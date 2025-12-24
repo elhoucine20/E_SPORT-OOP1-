@@ -11,7 +11,7 @@ include "console.php";
     echo "4. Gestion des joeurs \n";
     echo "0. Exit \n";
 
-    $console = new console();
+    $console = new Console();
     $choix =$console ->  input("Entre votre Choix");
 
  switch($choix){
@@ -25,11 +25,10 @@ include "console.php";
       break;
    case '5':   include "matchs.php";
       break;
-   default:echo "le choix pas disponible";
+   default:
+   echo "le choix pas disponible";
       break;
 
  }
-
-
 }
 ?>
