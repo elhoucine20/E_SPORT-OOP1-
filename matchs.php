@@ -2,14 +2,17 @@
 require_once "console.php";
 include "database.php";
 // echo "welcom to equip";
+// l'acces modifie
 
-class Jouer{
-
+class Matchs{
+    
+    public $id;
     public $equip_A;
     public $equip_B;
     public $Score_A;
     public $Score_B;
-    public $role;
+    public $tournoi_id;
+    public $winer;
 
    
     public function create($nom,$role,$salaire,$conn){

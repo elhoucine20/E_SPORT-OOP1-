@@ -2,17 +2,25 @@
 require_once "console.php";
 include "database.php";
 
-echo "welcom to tournoi";
 
 class Touenoi{
     public $title;
-    public $montant;
+    private $montant;
     public $format;
 
 
+
+
+    public function setMontante($montant){
+     return $this->montant=$montant;
+    }
+
+    public function getMontante(){
+        return $this->montant;
+    }
       
-    public function create($title,$montant,$format,$conn){
-    $sql="INSERT INTO Tournoi(title,montant,format) values('$title','$montant','$format') ;";
+    public function create($title,$format,$conn){
+    $sql="INSERT INTO Tournoi(Titre,montant,format) values('$title','$this->montant','$format') ;";
     $conn->query($sql);
      
     }
@@ -27,10 +35,10 @@ class Touenoi{
       $select = "SELECT * FROM Tournoi ";
       $result = $conn->query($select);
       $lesTournoi = mysqli_fetch_all($result, MYSQLI_ASSOC);
-          echo "id    || name              || jeu            \n";
+          echo "id    || Titre              || montant            ||format              \n";
       foreach($lesTournoi as $Tournoi){
-        echo "==============================================";
-          echo "\n".$Tournoi['id']."   || ".$Tournoi['title']."              || ".$Tournoi['montant']."            ||".$Tournoi['format']."             \n";
+        echo "==================================================================";
+          echo "\n".$Tournoi['id']."   || ".$Tournoi['Titre']."              || ".$Tournoi['montant']."            ||".$Tournoi['format']."             \n";
 
       }
 
@@ -64,7 +72,8 @@ while(true){
 
 
             $NewTournoi=new Touenoi();
-            $NewTournoi->create($title,$montant,$format,$conn);
+            $NewTournoi->setMontante($montant);
+            $NewTournoi->create($title,$format,$conn);
             break;
         case '2':  
             $NewTournoi=new Touenoi();

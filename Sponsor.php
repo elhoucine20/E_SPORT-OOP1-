@@ -22,9 +22,9 @@ class Sponsor{
       $select = "SELECT * FROM Sponsor ";
       $result = $conn->query($select);
       $lesSponsor = mysqli_fetch_all($result, MYSQLI_ASSOC);
-          echo "id    || name              || jeu            \n";
+          echo "id    || name                    || Contribution            \n";
       foreach($lesSponsor as $sponsor){
-        echo "==============================================";
+        echo "=================================================";
           echo "\n".$sponsor['id']."   || ".$sponsor['name']."              || ".$sponsor['Contribution']."        \n";
 
       }

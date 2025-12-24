@@ -12,9 +12,11 @@ class Club{
     $conn->query($sql);
      
     }
+
      public function edit(){
 
     }
+
      public function delete(){
 
     }
@@ -22,7 +24,7 @@ class Club{
       $select = "SELECT * FROM club ";
       $result = $conn->query($select);
       $lesClubs = mysqli_fetch_all($result, MYSQLI_ASSOC);
-          echo "id    || name              || jeu            \n";
+          echo "id    || name                  || ville            \n";
       foreach($lesClubs as $club){
         echo "==============================================";
           echo "\n".$club['id']."   || ".$club['name']."              || ".$club['ville']."        \n";

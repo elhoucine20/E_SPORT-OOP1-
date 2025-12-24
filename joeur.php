@@ -7,11 +7,20 @@ class Jouer{
 
     public $Pseudo;
     public $role;
-    public $salaire;
+    private $salaire;
 
    
-    public function create($nom,$role,$salaire,$conn){
-    $sql="INSERT INTO Joueur(Pseudo,role,salaire) values('$nom','$role','$salaire') ;";
+
+    public function setSalaire($salaire){
+        return $this->salaire=$salaire;
+    }
+
+    public function getSalaire(){
+        return $this->salaire;
+    }
+
+    public function create($nom,$role,$conn){
+    $sql="INSERT INTO Joueur(Pseudo,role,salaire) values('$nom','$role','$this->salaire') ;";
     $conn->query($sql);
      
     }
@@ -26,7 +35,7 @@ class Jouer{
       $select = "SELECT * FROM Joueur ";
       $result = $conn->query($select);
       $lesJoueurs = mysqli_fetch_all($result, MYSQLI_ASSOC);
-          echo "id    || name              || jeu            \n";
+          echo "id    || Pseudo                 || role            \n";
       foreach($lesJoueurs as $Joueur){
         echo "=========================================================";
           echo "\n".$Joueur['id']."   || ".$Joueur['Pseudo']."              || ".$Joueur['role']."             ||".$Joueur['role']."            \n";
@@ -61,7 +70,8 @@ while(true){
             $salaire = $console->input(": ");
 
             $NewJoueur=new Jouer();
-            $NewJoueur->create($nom,$role,$salaire,$conn);
+            $NewJoueur->setSalaire($salaire);
+            $NewJoueur->create($nom,$role,$conn);
             break;
         case '2':  
             $NewJoueur=new Jouer();
