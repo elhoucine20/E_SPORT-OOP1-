@@ -1,7 +1,6 @@
 <?php
 require_once "console.php";
 include "database.php";
-// echo "welcom to equip";
 
 class Equip{
 
@@ -14,7 +13,11 @@ class Equip{
     $conn->query($sql);
      
     }
-     public function edit(){
+         public function edit($id,$Nnom,$Njeu,$conn){
+      $sql = "UPDATE equipes 
+                      SET name = '$Nnom', jeu = '$Njeu' 
+                      WHERE id = '$id'";
+      $conn->query($sql);
 
     }
      public function delete(){
@@ -63,7 +66,18 @@ while(true){
             $NewEquip=new Equip();
             $NewEquip->affichage($conn);
             break;
+        case '4':  
+       echo "saisir id de l'equipe" ;
+            $id = $console->input(": ");
 
+            echo "saisir new name de l'equipe" ;
+            $Nname = $console->input(": ");
+            
+            echo "saisir new jeu" ;
+            $Njeu = $console->input(": ");
+            $NewEquip=new Equip();
+            $NewEquip->edit($id,$Nname,$Njeu,$conn);
+            break;
             
             case '0':
                 include "indexx.php";

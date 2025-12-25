@@ -12,7 +12,12 @@ class Sponsor{
     $conn->query($sql);
      
     }
-     public function edit(){
+    
+     public function edit($id,$Nnom,$Ncontribution,$conn){
+        $sql = "UPDATE Sponsor 
+                      SET name = '$Nnom', Contribution = '$Ncontribution' 
+                      WHERE id = '$id'";
+        $conn->query($sql);
 
     }
      public function delete(){
@@ -61,6 +66,20 @@ while(true){
             $NewSponsor->affichage($conn);
             break;
 
+
+               case '4':  
+            echo "saisir id" ;
+            $id = $console->input(": ");
+            
+            echo "saisir new name de sponsor" ;
+            $Nname = $console->input(": ");
+             echo "saisir new Contribution" ;
+            $Ncontribution = $console->input(": ");
+
+            $NewSponsor=new Club();
+            $NewSponsor->edit($id,$Nname,$Ncontribution,$conn);
+            
+            break;
             case '0':
                 include "indexx.php";
             break;

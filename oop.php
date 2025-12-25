@@ -36,7 +36,7 @@ abstract class Employe extends Personne {
     }
 }
 
-// كيانات
+// les class
 class Etudiant extends Personne {
     private $niveau;
 

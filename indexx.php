@@ -9,6 +9,8 @@ include "console.php";
     echo "2. Gestion d'eequipes \n" ;
     echo "3. UGestion des tournois \n";
     echo "4. Gestion des joeurs \n";
+    echo "5. Gestion des sponsor \n";
+    echo "6. Gestion des matchs \n";
     echo "0. Exit \n";
 
     $console = new Console();
@@ -23,7 +25,9 @@ include "console.php";
       break;
    case '4':   include "joeur.php";
       break;
-   case '5':   include "matchs.php";
+   case '5':   include "Sponsor.php";
+      break;
+   case '6':   include "matchs.php";
       break;
    default:
    echo "le choix pas disponible";

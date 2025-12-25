@@ -24,8 +24,11 @@ class Jouer{
     $conn->query($sql);
      
     }
-     public function edit(){
-
+       public function edit($id,$Nnom,$Nrole,$conn){
+      $sql = "UPDATE Joueur 
+                      SET Pseudo = '$Nnom', role = '$Nrole' ,salaire='$this->salaire'
+                      WHERE id = '$id'";
+      $conn->query($sql);
     }
      public function delete(){
 
@@ -77,7 +80,23 @@ while(true){
             $NewJoueur=new Jouer();
             $NewJoueur->affichage($conn);
             break;
+    case '4':  
+            echo "saisir id de Joueur" ;
+            $id = $console->input(": ");
 
+            echo "saisir new name de Joueur" ;
+            $Nnom = $console->input(": ");
+            
+            echo "saisir new role de Joueur" ;
+            $Nrole = $console->input(": ");
+
+            echo "saisir new salaire de Joueur" ;
+            $Nsalaire = $console->input(": ");
+
+            $NewJoueur=new Jouer();
+            $NewJoueur->setSalaire($Nsalaire);
+            $NewJoueur->edit($id,$Nnom,$Nrole,$conn);
+            break;
             
             case '0':
                 include "indexx.php";

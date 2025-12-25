@@ -21,7 +21,7 @@ CREATE TABLE equipes (
     FOREIGN KEY (club_id) REFERENCES club(id)
 );
 
-CREATE TABLE Joueur  (
+CREATE TABLE Joueur(
     id INT PRIMARY KEY AUTO_INCREMENT,
     Pseudo VARCHAR(255) UNIQUE ,
     role VARCHAR(255) NOT null ,
