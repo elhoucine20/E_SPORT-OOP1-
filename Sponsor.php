@@ -3,7 +3,7 @@ require_once "console.php";
 include "database.php";
 
  
-class Sponsor{
+class Sponsor implements Gestion{
    public $name;
    public $Contribution;
 
@@ -20,8 +20,10 @@ class Sponsor{
         $conn->query($sql);
 
     }
-     public function delete(){
-
+  public function delete($id,$conn){
+    $sql = "DELETE FROM Sponsor  WHERE id = '$id'";
+    $conn->query($sql);
+  
     }
       public function affichage($conn){
       $select = "SELECT * FROM Sponsor ";
@@ -56,8 +58,11 @@ while(true){
             
             echo "saisir Contribution de sponsor" ;
             $Contribution = $console->input(": ");
-            
+             
+            echo "saisir id de tourno (tournoi_id)" ;
+            $tournoi_id = $console->input(": ");
             $NewSponsor=new Sponsor();
+            
             $NewSponsor->create($name,$Contribution,$conn);
             
             break;
@@ -65,7 +70,12 @@ while(true){
             $NewSponsor=new Sponsor();
             $NewSponsor->affichage($conn);
             break;
-
+        case '3':  
+          echo "saisir id" ;
+            $id = $console->input(": ");
+            $SupSponsor=new JouSponsorer();
+            $SupSponsor->delete($id,$conn);
+            break;
 
                case '4':  
             echo "saisir id" ;

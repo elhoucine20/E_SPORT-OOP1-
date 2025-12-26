@@ -14,7 +14,7 @@ public function __construct($hos,$db,$name,$pass){
   $this->password=$pass;
 }
 public function getConnection(){
-  $connect=mysqli_connect($this->host,$this->username,$this->password,$this->db_name);
+  $connect = mysqli_connect($this->host,$this->username,$this->password,$this->db_name);
   return $connect;
 }
 }

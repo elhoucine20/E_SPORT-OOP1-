@@ -1,6 +1,14 @@
 <?php
-
 include "console.php";
+
+
+ interface   Gestion{
+public function create($a,$b,$c);
+public function edit($a,$b,$c,$d);
+public function delete($a,$b);
+public function affichage($a);
+}
+
 
  for($i=0;$i<1;$i++) {
     echo "\n";
@@ -19,14 +27,19 @@ include "console.php";
  switch($choix){
    case '1':   include "club.php";
       break;
+      
    case '2':   include "equipe.php";
       break;
+
    case '3':   include "tournoi.php";
       break;
+
    case '4':   include "joeur.php";
       break;
+
    case '5':   include "Sponsor.php";
       break;
+
    case '6':   include "matchs.php";
       break;
    default:

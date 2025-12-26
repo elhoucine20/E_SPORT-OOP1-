@@ -3,13 +3,10 @@ require_once "console.php";
 include "database.php";
 
 
-class Touenoi{
+class Touenoi implements Gestion{
     public $title;
     private $montant;
     public $format;
-
-
-
 
     public function setMontante($montant){
      return $this->montant=$montant;
@@ -24,11 +21,17 @@ class Touenoi{
     $conn->query($sql);
      
     }
-     public function edit(){
+     public function edit($id,$NTitre,$Nformat,$conn){
+        $sql = "UPDATE Tournoi 
+                      SET Titre = '$NTitre', montant = '$this->montant' ,format = '$Nformat'
+                      WHERE id = '$id'";
+        $conn->query($sql);
 
     }
-     public function delete(){
-
+  public function delete($id,$conn){
+    $sql = "DELETE FROM Sponsor  WHERE id = '$id'";
+    $conn->query($sql);
+  
     }
 
       public function affichage($conn){
@@ -79,6 +82,32 @@ while(true){
             $NewTournoi=new Touenoi();
             $NewTournoi->affichage($conn);
             break;
+
+       case '3':  
+          echo "saisir id" ;
+            $id = $console->input(": ");
+            $SupTournoi=new Touenoi();
+            $SupTournoi->delete($id,$conn);
+            break;
+
+    case '4':  
+            echo "saisir id de tournoi" ;
+            $id = $console->input(": ");
+
+            echo "saisir new TITRE de tournoi" ;
+            $Ntitre = $console->input(": ");
+            
+            echo "saisir new MONTANT de tournoi" ;
+            $Nmontant = $console->input(": ");
+
+            echo "saisir new FORMAT de tournoi" ;
+            $Nformat = $console->input(": ");
+
+            $NewTournoi=new Touenoi();
+            $NewTournoi->setSalaire($Nmontant);
+            $NewTournoi->edit($id,$Ntitre,$Nformat,$conn);
+            break;
+
             case '0':
                 include "indexx.php";
             break;

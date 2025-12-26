@@ -2,14 +2,24 @@
 require_once "console.php";
 include "database.php";
 
-class Equip{
+class Equip implements Gestion{
 
     public $name;
     public $jeu;
+    private $club_id;
+
+    
+    public function SetClub_id($club_id){
+        return $this->club_id=$club_id;
+    }
+
+    public function GetClub_id(){
+        return $this->club_id;
+    }
 
    
     public function create($nom,$jeu,$conn){
-    $sql="INSERT INTO equipes(name,jeu) values('$nom','$jeu') ;";
+    $sql="INSERT INTO equipes(name,jeu,club_id) values('$nom','$jeu',$this->club_id) ;";
     $conn->query($sql);
      
     }
@@ -20,8 +30,11 @@ class Equip{
       $conn->query($sql);
 
     }
-     public function delete(){
 
+     public function delete($id,$conn){
+    $sql = "DELETE FROM equipes  WHERE id = '$id'";
+    $conn->query($sql);
+  
     }
 
      public function affichage($conn){
@@ -59,13 +72,27 @@ while(true){
             
             echo "saisir le jeu" ;
             $jeu = $console->input(": ");
+              echo "saisir id de clube" ;
+            $IDclube = $console->input(": ");
+
             $NewEquip=new Equip();
+            $NewEquip->SetClub_id($IDclube);
             $NewEquip->create($name,$jeu,$conn);
+
             break;
         case '2':  
             $NewEquip=new Equip();
             $NewEquip->affichage($conn);
             break;
+
+
+             case '3':  
+          echo "saisir id" ;
+            $id = $console->input(": ");
+            $SupEquip=new Equip();
+            $SupEquip->delete($id,$conn);
+            break;
+            
         case '4':  
        echo "saisir id de l'equipe" ;
             $id = $console->input(": ");
@@ -80,10 +107,10 @@ while(true){
             break;
             
             case '0':
-                include "indexx.php";
+           exit();
             break;
             default:
-            echo "le choix pas disponible";
+            echo "\nle choix pas disponible\ns'il vous plais saisir autre choix\n";
             break;
             
         }
